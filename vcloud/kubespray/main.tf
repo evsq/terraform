@@ -7,9 +7,21 @@ provider "vcd" {
     max_retry_timeout = var.vcd_max_retry_timeout
 }
 
+resource "vcd_network" "kubespray" {
+    name = "${var.VCD_NET_NAME}"
+    edge_gateway = "${var.EDGE_GATEWAY_NAME}"
+    gateway      = "10.30.0.1"
+    netmask      = "255.255.255.0"
+    static_ip_pool {
+      start_address = "10.30.0.2"
+      end_address   = "10.30.0.254"
+    }
+}
+
 resource "vcd_vapp" "kubespray" {
     name = var.VCD_VAPP_NAME
     network_name = var.VCD_NET_NAME
+    depends_on = ["vcd_network.kubespray"]
 }
 
 resource "vcd_vapp_vm" "master1" {
