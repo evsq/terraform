@@ -1,4 +1,5 @@
-variable "TOKEN" {
+# Should be provided in TF_VAR_do_token environment variable
+variable "do_token" {
   type = string
   default = ""
 }
