@@ -12,5 +12,5 @@ resource "digitalocean_kubernetes_cluster" "test" {
 
 resource "local_file" "kubeconfig" {
   content  = digitalocean_kubernetes_cluster.test.kube_config[0].raw_config
-  filename = "$HOME/.kube/do-kubeconfig"
+  filename = var.KUBECONFIG_PATH
 }

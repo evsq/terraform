@@ -23,3 +23,8 @@ variable "NODE_COUNT" {
     type = string
     default = "1"
 }
+
+variable "KUBECONFIG_PATH" {
+    type = string
+    default = "/home/evsq/.kube/do.kubeconfig"
+}
